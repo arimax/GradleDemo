@@ -1,19 +1,22 @@
 package com.kajishima.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kajishima.service.MyService;
 
 @RestController
-@RequestMapping("api/v1/demo")
+@RequestMapping("/api/v1/demo")
 
 public class DemoController {
-	@ResponseBody
+	@Autowired
+	private MyService myService;
+
+	@RequestMapping(method = RequestMethod.GET)
 	public String test() {
-		MyService myService;
-	    return "Hello World";
+	    return "Hello World " + myService.message();
 	}
 
 }
